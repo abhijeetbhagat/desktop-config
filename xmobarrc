@@ -1,0 +1,29 @@
+Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
+       , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , alpha = 255
+       , position = Top
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Network "wlp5s0" ["-t", "<fn=1></fn> <tx>KB <fn=1></fn> <rx>KB", "-L","0","-H","32",
+                                          "--normal","green","--high","red"] 20
+                    , Run Cpu ["-t", "<fc=#f5a40f><fn=1></fn></fc> <total>%"] 10
+                    , Run Memory ["-t","<fc=#fe261e><fn=1> </fn></fc> <usedratio>%"] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%cpu% %memory% %wlp5s0% }\
+                    \{ <fc=#ee9a00>%date%</fc>| %uname%"
+       }
