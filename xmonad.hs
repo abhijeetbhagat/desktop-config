@@ -16,6 +16,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.MultiToggle (EOT (EOT), Toggle (Toggle), mkToggle, (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (NBFULL, NOBORDERS))
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, xmobarPP, xmobarColor, wrap, shorten, PP(..))
+import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Prompt
 import XMonad.Prompt.Man
 import Data.Maybe (fromJust)
@@ -97,7 +98,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Toggle fullscreen
-    , ((modm,		    xK_f     ), sendMessage $ Toggle NBFULL)
+    -- , ((modm,		    xK_f     ), sendMessage $ Toggle NBFULL)
+    , ((modm,		    xK_f     ), sendMessage (Toggle NBFULL) >> sendMessage ToggleStruts)
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
 
@@ -196,7 +198,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts . mkToggle (NOBORDERS ?? NBFULL ?? EOT) $ myLayouts
+myLayout = smartBorders . avoidStruts . mkToggle (NOBORDERS ?? NBFULL ?? EOT) $ myLayouts
   where
      myLayouts = (tiled ||| Mirror tiled ||| Full)	
      -- default tiling algorithm partitions the screen into two panes
