@@ -93,7 +93,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     -- spawnOnce "lxsession &"
-    spawnOnce "picom &"
+    spawnOnce "compton &"
     -- spawnOnce "nm-applet &"
     -- spawnOnce "volumeicon &"
     -- spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc"
@@ -104,6 +104,8 @@ myStartupHook = do
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
     spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
+    spawnOnce "sct 4000 &"   -- set night light warmth
+    spawnOnce "xscreensaver -no-splash &"   -- start screensave for locking
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -347,6 +349,9 @@ myKeys =
         , ("M-<Return>", spawn (myTerminal))
         , ("M-b", spawn (myBrowser ++ " www.youtube.com/c/DistroTube/"))
         , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
+
+    -- lock computer
+    	, ("M-S-l", spawn "xscreensaver-command -l &")
 
     -- Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
