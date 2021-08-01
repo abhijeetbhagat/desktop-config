@@ -1,5 +1,5 @@
 Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
-       , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
+       , additionalFonts = [ "xft:FontAwesome:pixelsize=11" ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
