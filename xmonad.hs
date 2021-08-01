@@ -15,10 +15,10 @@ import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.MultiToggle (EOT (EOT), Toggle (Toggle), mkToggle, (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (NBFULL, NOBORDERS))
-import XMonad.Hooks.DynamicLog (dynamicLogWithPP, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, xmobarPP, xmobarColor, wrap, shorten, PP(..))
 import XMonad.Prompt
 import XMonad.Prompt.Man
-
+import Data.Maybe (fromJust)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -56,7 +56,10 @@ myModMask       = mod4Mask
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces    = ["dev","web","3","4","5","6","7","8","9"]
+myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
+clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
+    where i = fromJust $ M.lookup ws myWorkspaceIndices
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#000000"
@@ -293,8 +296,8 @@ main = do
                               -- >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
                               -- >> hPutStrLn xmproc2 x                          -- xmobar on monitor 3
               -- , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"           -- Current workspace
-              -- , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
-              -- , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "" . clickable -- Hidden workspaces
+              , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
+              , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "" . clickable -- Hidden workspaces
               -- , ppHiddenNoWindows = xmobarColor "#c792ea" ""  . clickable     -- Hidden workspaces (no windows)
               -- , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
