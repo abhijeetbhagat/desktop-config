@@ -272,7 +272,8 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-	xmproc <- spawnPipe "xmobar -x 0 /home/abhi/.config/xmobar/xmobarrc"
+	xmproc0 <- spawnPipe "xmobar -x 0 /home/abhi/.config/xmobar/xmobarrc"
+	xmproc1 <- spawnPipe "xmobar -x 1 /home/abhi/.config/xmobar/xmobarrc"
 	xmonad $ docks def {
       -- simple stuff
         terminal           = myTerminal,
@@ -294,8 +295,8 @@ main = do
         handleEventHook    = myEventHook,
         logHook            = dynamicLogWithPP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
-              { ppOutput = \x -> hPutStrLn xmproc x                          -- xmobar on monitor 1
-                              -- >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
+              { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
+                              >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
                               -- >> hPutStrLn xmproc2 x                          -- xmobar on monitor 3
               -- , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"           -- Current workspace
               , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
