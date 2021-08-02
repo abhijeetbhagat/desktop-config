@@ -10,6 +10,8 @@ import XMonad.Layout.MultiToggle.Instances (StdTransformers (NBFULL, NOBORDERS))
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, xmobarPP, xmobarColor, wrap, shorten, PP(..))
 import XMonad.Actions.CopyWindow (kill1)
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Util.WindowProperties (Property (..), propertyToQuery)
+import XMonad.Hooks.ManageHelpers (doRectFloat)
 import XMonad.Prompt
 import XMonad.Prompt.Man
 import Data.Maybe (fromJust)
@@ -215,7 +217,9 @@ myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore
+    , propertyToQuery (Role "GtkFileChooserDialog")
+        --> doRectFloat (W.RationalRect 0.25 0.25 0.5 0.5)]
 
 ------------------------------------------------------------------------
 -- Event handling
