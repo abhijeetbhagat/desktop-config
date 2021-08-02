@@ -8,6 +8,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.MultiToggle (EOT (EOT), Toggle (Toggle), mkToggle, (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (NBFULL, NOBORDERS))
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, xmobarPP, xmobarColor, wrap, shorten, PP(..))
+import XMonad.Actions.CopyWindow (kill1)
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Prompt
 import XMonad.Prompt.Man
@@ -65,6 +66,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    -- launch man prompt
+    , ((modm .|. shiftMask, xK_c     ), kill1)
 
     -- launch man prompt
     , ((modm .|. shiftMask, xK_m     ), manPrompt def)
