@@ -1,0 +1,49 @@
+*packages installed*
+nitrogen
+compton
+sct
+ffmpeg
+xdotool
+xsel
+xscreensaver-command
+build-essential
+curl
+alacritty
+nvim
+xmonad
+xmobar
+
+*important commands*
+increase volume by 5%: amixer -D pulse sset Master 5%+
+set night-light:       sct 4000
+
+*installing cascadia code font in ubuntu 20*
+download cascadia code fonts zip file from github, unzip it and copy the CascadiaCode.ttf file in ~/.local/share/fonts
+
+*making fonts available in .XResources*
+```
+cd ~/.local/share/fonts
+sudo mkfontscale
+sudo mkfontdir
+xset +fp /usr/share/fonts/truetype/msttcorefonts/
+xset fp rehash
+xrdb -merge ~/.Xdefaults
+xscreensaver-command -restart
+```
+*capturing audio from speakers*
+first list the speaker:
+```
+pacmd list-sinks|grep -e Speakers -e index -e name:
+```
+and then record from the speaker using ffmpeg:
+```
+ffmpeg -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor -ac 2 temp.wav
+```
+*setting firefox resolution*
+goto about:config from the ff url
+look for `layout.css.devPixelsPerPx` setting
+change it to 0.9 from -1.0
+
+*checking classes of windows*
+xprop |grep WM_RESOURCE
+
