@@ -1,5 +1,5 @@
 Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
-       , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
+       , additionalFonts = [ "xft:FontAwesome:pixelsize=11" ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -21,10 +21,19 @@ Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
                     , Run Memory ["-t","<fc=#fe261e><fn=1> </fn></fc> <usedratio>%"] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-		    , Run UnsafeStdinReader
-                    ]
+		    , Run Battery [
+		        "-t", "<acstatus>: <left>% - <timeleft>",
+			"--",
+			--"-c", "charge_full",
+			"-O", "AC",
+			"-o", "Bat",
+			"-h", "green",
+			"-l", "red"
+	              ] 10
+		    , Run UnsafeStdinReader                   
+	 ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% %memory% %wlp5s0% %UnsafeStdinReader%}\
-                    \{ <fc=#ee9a00>%date%</fc>| %uname%"
+       , template = "%UnsafeStdinReader% }\
+                    \{ %cpu% %memory% %wlp5s0% %battery% <fc=#ee9a00>%date%</fc>" 
        }
