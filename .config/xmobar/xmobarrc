@@ -1,5 +1,5 @@
-Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
-       , additionalFonts = [ "xft:FontAwesome:pixelsize=11" ]
+Config { font = "xft:Font Awesome 5 Free Solid:style=solid:size=8, xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=solid:size=8", "xft:Cascadia Code:style=regular:size=8:antialias=true:hinting:true" ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -15,14 +15,13 @@ Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
        , iconRoot = "/home/abhi/.config/xmobar/"
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Network "wlp5s0" ["-t", "<fn=1></fn> <tx>KB <fn=1></fn> <rx>KB", "-L","0","-H","32",
+       , commands = [ Run Network "wlp5s0" ["-t", "<fn=1></fn> <fn=2><tx>KB</fn> <fn=1></fn> <fn=2><rx>KB</fn>", "-L","0","-H","32",
                                           "--normal","green","--high","red"] 20
-                    , Run Cpu ["-t", "<fc=#f5a40f><fn=1></fn></fc> <total>%"] 10
-                    , Run Memory ["-t","<fc=#fe261e><fn=1></fn></fc> <usedratio>%"] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Cpu ["-t", "<fc=#f5a40f><fn=1></fn></fc> <fn=2><total>%</fn>"] 10
+                    , Run Memory ["-t","<fc=#fe261e><fn=1></fn></fc> <fn=2><usedratio>%</fn>"] 10
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
 		    , Run Battery [
-		        "-t", "<acstatus>: <left>% - <timeleft>",
+		        "-t", "<fn=2><acstatus>: <left>% - <timeleft></fn>",
 			"--",
 			--"-c", "charge_full",
 			"-O", "AC",
@@ -35,5 +34,5 @@ Config { font = "xft:Ubuntu Mono:pixelsize=12:antialias=true:hinting:true"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "<icon=haskell.xpm/> %UnsafeStdinReader% }\
-                    \{ %cpu% %memory% %wlp5s0% %battery% <fc=#ee9a00>%date%</fc>" 
+                    \{ %cpu% %memory% %wlp5s0% %battery% <fc=#ee9a00><fn=2>%date%</fn></fc>" 
        }
