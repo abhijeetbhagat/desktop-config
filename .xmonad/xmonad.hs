@@ -51,7 +51,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["dev","web","3","4","5","6","7","8","9"]
+myWorkspaces    = ["\xf121","\xf0ac","3","4","5","6","7","8","9"]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -279,7 +279,7 @@ main = do
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
+        layoutHook         = smartBorders $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
         logHook            = dynamicLogWithPP $ xmobarPP
@@ -289,7 +289,7 @@ main = do
                               -- >> hPutStrLn xmproc2 x                          -- xmobar on monitor 3
               -- , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"           -- Current workspace
               , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "" . clickable -- Hidden workspaces
+              , ppHidden = xmobarColor "#82AAFF" "" .  clickable 		-- Hidden workspaces
               -- , ppHiddenNoWindows = xmobarColor "#c792ea" ""  . clickable     -- Hidden workspaces (no windows)
               -- , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
