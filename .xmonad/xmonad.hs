@@ -251,7 +251,7 @@ myEventHook = mempty
 myStartupHook = do
 	spawnOnce "nitrogen --restore &"
 	spawnOnce "compton &"
-	spawnOnce "sct 4000 &" -- set night light warmth
+	spawnOnce "sct 2500 &" -- set night light warmth
 	spawnOnce "xsetroot -cursor_name left_ptr &" -- set mouse pointer
 	spawnOnce "xscreensaver -no-splash &" -- start screensaver
 
