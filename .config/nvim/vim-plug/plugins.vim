@@ -7,4 +7,5 @@ Plug 'cespare/vim-toml'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
+Plug 'puremourning/vimspector'
 call plug#end()

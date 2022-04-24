@@ -119,3 +119,12 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 set completeopt=menuone,noinsert,noselect
 hi Pmenu ctermbg=gray
 
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+
+" autosave session when quitting 
+au VimLeave * if !empty(v:this_session) | exe "mksession! ".(v:this_session)
+
+" telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
