@@ -3,10 +3,11 @@
 killall polybar
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 picom &
+dunst &
 polybar -c ~/.config/polybar/config.ini &
 xwallpaper --zoom ~/Pictures/marc-marquez-repsol-honda-team-2775092431.jpeg &
 
-bspc monitor -d   3  5 6 7 8 9 10
+bspc monitor -d   %{T2}3%{T-}  %{T2}5%{T-} %{T2}6%{T-} %{T2}7%{T-} %{T2}8%{T-} %{T2}9%{T-} %{T2}10%{T-}
 
 bspc config border_width         2
 bspc config window_gap          3
@@ -25,6 +26,6 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a TopTracker desktop='^2' state=floating sticky=off
+bspc rule -a TopTracker sticky=off
 
 xsetroot -cursor_name left_ptr
