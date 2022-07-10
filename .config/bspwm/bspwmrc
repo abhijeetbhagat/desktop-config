@@ -5,7 +5,7 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc &
 picom &
 dunst &
 polybar -c ~/.config/polybar/config.ini &
-xwallpaper --zoom ~/Pictures/marc-marquez-repsol-honda-team-2775092431.jpeg &
+xwallpaper --zoom ~/Pictures/neon-cyberpunk.jpeg &
 
 bspc monitor -d   %{T2}3%{T-}  %{T2}5%{T-} %{T2}6%{T-} %{T2}7%{T-} %{T2}8%{T-} %{T2}9%{T-} %{T2}10%{T-}
 
@@ -26,6 +26,7 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a TopTracker sticky=off
+bspc rule -a cal-popup state=floating sticky=off follow=on
+# bspc rule -a TopTracker state=tiled sticky=off follow=on
 
 xsetroot -cursor_name left_ptr
