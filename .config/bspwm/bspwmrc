@@ -5,7 +5,7 @@ sxhkd -c ~/.config/sxhkd/sxhkdrc &
 picom &
 dunst &
 polybar -c ~/.config/polybar/config.ini &
-xwallpaper --zoom ~/Pictures/neon-cyberpunk.jpeg &
+xwallpaper --zoom ~/Pictures/the_warrior.jpg &
 
 bspc monitor -d   %{T2}3%{T-}  %{T2}5%{T-} %{T2}6%{T-} %{T2}7%{T-} %{T2}8%{T-} %{T2}9%{T-} %{T2}10%{T-}
 
@@ -27,6 +27,7 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a cal-popup state=floating sticky=off follow=on
-# bspc rule -a TopTracker state=tiled sticky=off follow=on
+bspc rule -a TopTracker sticky=off
+# bspc rule -a toptracker desktop='^3' sticky=off follow=on state=floating
 
 xsetroot -cursor_name left_ptr
